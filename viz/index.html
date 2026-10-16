@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大智算科技树 · 交互式可视化</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+ <div id="stage">
+  <svg id="tree"><g id="world"></g></svg>
+  <div id="toolbar">
+   <button id="btnReset">重置</button><button id="btnAll">全部点亮</button>
+   <button id="btnFit">适应画布</button><button id="btnZin">＋</button><button id="btnZout">－</button>
+   <input id="search" placeholder="搜索节点名/ID 回车定位">
+   <span id="stats"></span>
+  </div>
+  <div id="legend"></div>
+  <div id="tooltip"></div>
+  <div id="toast"></div>
+ </div>
+ <div id="sidebar"></div>
+</div>
+<div id="selftest"></div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
