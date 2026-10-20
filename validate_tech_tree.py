@@ -14,7 +14,7 @@ SRC = os.path.join(BASE, "智算科技树-graph-v0.3.json")
 REPORT = os.path.join(BASE, "智算科技树-v0.3-校验报告.md")
 ENRICHED = os.path.join(BASE, "智算科技树-graph-v0.3.enriched.json")
 
-EXPECT_NODES = 193
+EXPECT_NODES = 194
 EXPECT_PATHS = 18
 
 

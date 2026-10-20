@@ -1,9 +1,9 @@
 {
  "meta": {
-  "version": "0.3.5",
+  "version": "0.3.6",
   "date": "2026-10-20",
-  "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力",
-  "nodeCount": 193,
+  "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力 + v0.2.7 DeepInfer 与许愿式编程",
+  "nodeCount": 194,
   "trunkCount": 11,
   "victoryCount": 5,
   "pathCount": 18
@@ -986,7 +986,7 @@
    "id": "D17",
    "name": "引擎工程化/国产引擎",
    "trunk": "D",
-   "desc": "vLLM v0.31/SGLang/EndStream",
+   "desc": "vLLM v0.31/SGLang/EndStream；DeepInfer（DeepSeek 生产引擎 2026.10 开源：异步零开销批调度、DSpark 置信度投机验证、EPLB，SM100+昇腾 950 双平台，基于 vLLM 构建）",
    "prereqs": [
     "D4"
    ],
@@ -1024,7 +1024,7 @@
    "name": "异步并行架构",
    "trunk": "D",
    "frontier": true,
-   "desc": "V3.2 async TP/DP/PIPEMORPH",
+   "desc": "V3.2 async TP/DP/PIPEMORPH（DeepInfer 开源生产化：零开销异步批调度器）",
    "prereqs": [
     "D6",
     "E3"
@@ -2017,7 +2017,7 @@
    ],
    "criteria": "token -84%",
    "depth": 5,
-   "dependents": 1
+   "dependents": 2
   },
   {
    "id": "J10",
@@ -2030,7 +2030,7 @@
    ],
    "criteria": "生产 ARR",
    "depth": 6,
-   "dependents": 0
+   "dependents": 1
   },
   {
    "id": "J11",
@@ -2406,7 +2406,7 @@
    "id": "D26",
    "name": "跨架构算子中间层",
    "trunk": "D",
-   "desc": "Triton 事实标准：AMD/Intel 适配、昇腾 triton-das、国产芯普遍适配——CUDA 解耦的关键软件层（衔接 H1 一云多芯与 V5 生态自主）",
+   "desc": "Triton 事实标准：AMD/Intel 适配、昇腾 triton-das、国产芯普遍适配——CUDA 解耦的关键软件层（衔接 H1 一云多芯与 V5 生态自主）；DeepSeek 跨架构实证（DeepJIT xPU JIT、DeepGEMM/DeepEP-Ascend 移植、DeepInfer 昇腾后端）",
    "prereqs": [
     "D1",
     "D2"
@@ -2507,6 +2507,20 @@
    ],
    "criteria": "L2：多租密钥隔离与自动轮转生产化",
    "depth": 1,
+   "dependents": 0
+  },
+  {
+   "id": "J17",
+   "name": "许愿式编程（意图驱动开发）",
+   "trunk": "J",
+   "frontier": true,
+   "desc": "从表达代码到表达意图：一句话需求→规格→计划→编码→运行→交付的端到端自治（vibe coding 之后的范式跃迁；2026.10 DeepSeek V4.1-Flash 与 GPT-6 Astra 产品化引爆·术语为社区话语无单一出处）",
+   "prereqs": [
+    "J10",
+    "J9"
+   ],
+   "criteria": "L1→L2：一句话生成可运行项目成为主流交付形态",
+   "depth": 7,
    "dependents": 0
   }
  ],
