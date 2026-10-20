@@ -90,11 +90,12 @@ g.node.lit .ncard .nm{color:#fff;font-weight:700;}
 g.node.lit .ncard .ds{color:#ffffffcc;}
 g.node.lit .st::before{content:"✓ 已点亮";color:#fff;}
 g.node.frontier .ncard{border-style:dashed;}
-g.node.flash .ncard{animation:flash .9s ease-in-out 3;border-color:#fff;}
+g.node.flash .ncard{animation:flash .5s ease-in-out 5;opacity:1;filter:none;}
 g.node.hlg .ncard{box-shadow:0 0 0 2.5px #fff,0 0 16px #fff4;}
 @keyframes pulse{0%,100%{box-shadow:0 0 5px color-mix(in srgb,var(--tc) 30%,transparent);}50%{box-shadow:0 0 20px color-mix(in srgb,var(--tc) 80%,transparent);}}
-@keyframes flash{0%,100%{box-shadow:0 0 0 0 rgba(245,197,66,0);transform:scale(1);}
- 45%{box-shadow:0 0 0 8px rgba(245,197,66,.95),0 0 60px 22px rgba(245,197,66,.85);transform:scale(1.12);}}
+@keyframes flash{0%,100%{background:#0f1522;box-shadow:none;}
+ 50%{background:linear-gradient(150deg,color-mix(in srgb,var(--tc) 75%,#0b0f18),color-mix(in srgb,var(--tc) 42%,#0b0f18));
+  border-color:#fff;box-shadow:0 0 24px color-mix(in srgb,var(--tc) 90%,transparent);}}
 .badge{position:absolute;top:3px;left:7px;font-size:9px;font-weight:700;display:flex;gap:5px;}
 .badge .fr{color:var(--gold);}
 .badge .dm{color:#ff9ad5;display:none;}

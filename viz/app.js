@@ -171,7 +171,7 @@ function fit(){const r=svg.getBoundingClientRect();view.k=Math.min(r.width/W,r.h
 function fitWidth(){const r=svg.getBoundingClientRect();view.k=r.width/W*.98;view.x=8;view.y=16;apply();}
 function center(id){const p=POS[id],r=svg.getBoundingClientRect();view.x=r.width/2-(p.x+NW/2)*view.k;view.y=r.height/2-(p.y+NH/2)*view.k;apply();
  const g=document.getElementById("N_"+id);g.classList.remove("flash");void g.getBoundingClientRect();g.classList.add("flash");
- setTimeout(()=>g.classList.remove("flash"),2750);}
+ setTimeout(()=>g.classList.remove("flash"),2600);}
 document.getElementById("btnFit").onclick=fit;
 document.getElementById("btnZin").onclick=()=>{const r=svg.getBoundingClientRect();const k2=Math.min(2.4,view.k*1.25);
  view.x=r.width/2-(r.width/2-view.x)*k2/view.k;view.y=r.height/2-(r.height/2-view.y)*k2/view.k;view.k=k2;apply();};
