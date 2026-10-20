@@ -1,5 +1,5 @@
 {
- "meta": {"version": "0.3.4", "date": "2026-10-17", "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口", "nodeCount": 190, "trunkCount": 11, "victoryCount": 5, "pathCount": 18},
+ "meta": {"version": "0.3.5", "date": "2026-10-20", "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力", "nodeCount": 193, "trunkCount": 11, "victoryCount": 5, "pathCount": 18},
  "trunks": [
   {"id": "A", "name": "芯片与算力硬件", "type": "常规", "question": "单点每秒每瓦能算多少"},
   {"id": "B", "name": "互连与网络", "type": "常规", "question": "多机能不能当单机用"},
@@ -100,7 +100,7 @@
   {"id": "E2", "name": "显存优化", "trunk": "E", "desc": "ZeRO/FSDP", "prereqs": ["E1"], "criteria": "显存 1/N 分片"},
   {"id": "E3", "name": "多维并行", "trunk": "E", "desc": "3D→五维 Megatron 系", "prereqs": ["E2"], "criteria": "千卡扩展 ≥85%"},
   {"id": "E4", "name": "FP8 训练工程", "trunk": "E", "desc": "V3 278.8 万 GPU 时", "prereqs": ["A6", "E3"], "criteria": "近无损成本降 ≥50%"},
-  {"id": "E5", "name": "万卡集群工程", "trunk": "E", "desc": "MegaScale MFU55.2%/Colossus", "prereqs": ["E3", "B4"], "criteria": "L2：MFU ≥40%；L3：≥55%"},
+  {"id": "E5", "name": "万卡集群工程", "trunk": "E", "desc": "MegaScale MFU55.2%/Colossus 十万卡单集群", "prereqs": ["E3", "B4"], "criteria": "L2：MFU ≥40%；L3：≥55%"},
   {"id": "E6", "name": "checkpoint 快速存取", "trunk": "E", "desc": "K2 5min/Checkmate", "prereqs": ["E5", "I5"], "criteria": "间隔 ≤15min，恢复 P50 <15min"},
   {"id": "E7", "name": "训练容错自愈", "trunk": "E", "desc": "Llama3.1 466 次中断/SDC 检测", "prereqs": ["E6"], "criteria": "L2 ≥98%；L3 ≥99.5%"},
   {"id": "E8", "name": "loss spike 治理", "trunk": "E", "desc": "检测回滚+Muon", "prereqs": ["E7"], "criteria": "万亿零 spike"},
@@ -194,7 +194,7 @@
   {"id": "F21", "name": "GPU 故障预测与健康管理", "trunk": "F", "sub": "监控运维", "desc": "DCGM 4.x、ECC/XID 时序预测坏卡预摘除（Llama3：54 天 419 次、GPU 占 58.7%）", "prereqs": ["F16"], "criteria": "L2：支撑有效训练时间 ≥90%"},
   {"id": "F22", "name": "推理 SLO 与网关可观测", "trunk": "F", "sub": "监控运维", "desc": "TTFT/TPOT/goodput 监控、LiteLLM 统一网关、token 级成本追踪", "prereqs": ["F16", "F14"], "criteria": "L2：goodput 口径生产化"},
   {"id": "F23", "name": "输出质量漂移监控", "trunk": "F", "sub": "监控运维", "desc": "线上 LLM-as-judge、Langfuse/LangSmith", "prereqs": ["F22"], "criteria": "L2：漂移自动告警"},
-  {"id": "F24", "name": "LMOps 评测与发布流水线", "trunk": "F", "sub": "监控运维", "desc": "MLflow 3.x、评测 CI、灰度回滚、提示词/数据版本", "prereqs": ["F14"], "criteria": "L2：模型交付流水线化"},
+  {"id": "F24", "name": "LMOps 评测与发布流水线", "trunk": "F", "sub": "监控运维", "desc": "MLflow 3.x、评测 CI、灰度回滚、AB 实验（在线对照评测）、提示词/数据版本", "prereqs": ["F14"], "criteria": "L2：模型交付流水线化"},
   {"id": "F25", "name": "混沌工程与故障演练", "trunk": "F", "sub": "监控运维", "desc": "Chaos Mesh/ChaosBlade、算力故障注入与预案自动验证", "prereqs": ["F17"], "criteria": "L2：预案自动验证"},
   {"id": "F26", "name": "智算运营与容量规划", "trunk": "F", "sub": "运营", "desc": "上架率盈亏线 60%（部分智算中心利用率 <10%）、代运营（商汤大装置/无问芯穹/并行）", "prereqs": ["F13"], "criteria": "L2：上架率 ≥60% 且 SLA 商务闭环"},
   {"id": "G9", "name": "DCIM 设施智能运维", "trunk": "G", "desc": "电力/液冷/环境监控、iCooling AI 节能（PUE 再降 8~15%）、Mission Control 设施-IT 联动", "prereqs": ["G1", "F16"], "criteria": "L2：设施-IT 事件联动"},
@@ -203,7 +203,10 @@
   {"id": "D27", "name": "AF 分离（Attention/FFN）", "trunk": "D", "frontier": true, "desc": "模块级分离部署：attention 与 FFN 按资源画像异构放置（ParallelTransformer/DETLA 方向）；多厂商团队攻关中，尚无生产级落地", "prereqs": ["D9"], "criteria": "L1：原型系统量化验证模块解耦的利用率收益"},
   {"id": "F27", "name": "算力服务多活与容灾", "trunk": "F", "sub": "监控运维", "desc": "推理多 AZ 多活、failover、降级预案、RTO/RPO 口径——服务连续性层（区别于训练容错 E7 与部件健康管理 F21）", "prereqs": ["F12", "F22"], "criteria": "L2：跨 AZ 容灾 RTO 分钟级且演练常态化"},
   {"id": "F28", "name": "云边协同与边缘智算节点", "trunk": "F", "sub": "调度", "desc": "区县智算下沉/MEC 智算节点、中心训推-边缘拉远推理、云边协同调度与数据回传——算力普惠与并网的边缘末梢（区别于 D18 端侧运行时）", "prereqs": ["F12"], "criteria": "L2：边缘推理生产化（P95 首字 <500ms）且云边协同调度商用"},
-  {"id": "J16", "name": "循环工程 Loop Engineering", "trunk": "J", "frontier": true, "desc": "Agent 执行循环作为一等工程对象：行动→反馈→验证器→迭代、终止条件与循环预算（上下文工程之后的下一层话语；概念出处待核实·低置信）", "prereqs": ["J3", "J11", "E16"], "criteria": "L1：验证器驱动自纠循环在基准任务上方法层可复现"}
+  {"id": "J16", "name": "循环工程 Loop Engineering", "trunk": "J", "frontier": true, "desc": "Agent 执行循环作为一等工程对象：行动→反馈→验证器→迭代、终止条件与循环预算（上下文工程之后的下一层话语；概念出处待核实·低置信）", "prereqs": ["J3", "J11", "E16"], "criteria": "L1：验证器驱动自纠循环在基准任务上方法层可复现"},
+  {"id": "F29", "name": "超融合基础设施（HCI）", "trunk": "F", "sub": "资源抽象", "desc": "计算/存储/网络融合一体机（vSAN/Nutanix/FusionCube/H3C UIS），K8s 原生交付并向 GPU 超融合演进——私有化与边缘智算的规模化交付形态", "prereqs": ["F1"], "criteria": "L2：GPU 超融合承载训推负载规模化交付"},
+  {"id": "F30", "name": "分布式协调与状态存储", "trunk": "F", "sub": "资源抽象", "desc": "etcd/Raft 共识 KV（ZooKeeper/Consul 同类），K8s 控制面底座——万节点单集群的元数据瓶颈与替代路径（注记：k3s 内嵌/分片方案）", "prereqs": ["F1"], "criteria": "L2：支撑万节点级控制面稳定低时延"},
+  {"id": "F31", "name": "密钥与凭据管理", "trunk": "F", "sub": "安全可信", "desc": "KMS/Vault/K8s Secrets 生态（external-secrets/sealed-secrets）、HSM 与国密——MaaS API 凭据、模型权重加密与签名底座", "prereqs": ["F1"], "criteria": "L2：多租密钥隔离与自动轮转生产化"}
  ],
  "victories": [
   {"id": "V1", "name": "经济性", "definition": "每 token 成本与能耗（$/Mtoken 与 J/token）",

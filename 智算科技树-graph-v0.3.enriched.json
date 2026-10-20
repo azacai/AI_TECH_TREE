@@ -1,9 +1,9 @@
 {
  "meta": {
-  "version": "0.3.4",
-  "date": "2026-10-17",
-  "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口",
-  "nodeCount": 190,
+  "version": "0.3.5",
+  "date": "2026-10-20",
+  "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力",
+  "nodeCount": 193,
   "trunkCount": 11,
   "victoryCount": 5,
   "pathCount": 18
@@ -1138,7 +1138,7 @@
    "id": "E5",
    "name": "万卡集群工程",
    "trunk": "E",
-   "desc": "MegaScale MFU55.2%/Colossus",
+   "desc": "MegaScale MFU55.2%/Colossus 十万卡单集群",
    "prereqs": [
     "E3",
     "B4"
@@ -1318,7 +1318,7 @@
    "prereqs": [],
    "criteria": "标准化交付",
    "depth": 0,
-   "dependents": 3
+   "dependents": 6
   },
   {
    "id": "F2",
@@ -2342,7 +2342,7 @@
    "name": "LMOps 评测与发布流水线",
    "trunk": "F",
    "sub": "监控运维",
-   "desc": "MLflow 3.x、评测 CI、灰度回滚、提示词/数据版本",
+   "desc": "MLflow 3.x、评测 CI、灰度回滚、AB 实验（在线对照评测）、提示词/数据版本",
    "prereqs": [
     "F14"
    ],
@@ -2468,6 +2468,45 @@
    ],
    "criteria": "L1：验证器驱动自纠循环在基准任务上方法层可复现",
    "depth": 6,
+   "dependents": 0
+  },
+  {
+   "id": "F29",
+   "name": "超融合基础设施（HCI）",
+   "trunk": "F",
+   "sub": "资源抽象",
+   "desc": "计算/存储/网络融合一体机（vSAN/Nutanix/FusionCube/H3C UIS），K8s 原生交付并向 GPU 超融合演进——私有化与边缘智算的规模化交付形态",
+   "prereqs": [
+    "F1"
+   ],
+   "criteria": "L2：GPU 超融合承载训推负载规模化交付",
+   "depth": 1,
+   "dependents": 0
+  },
+  {
+   "id": "F30",
+   "name": "分布式协调与状态存储",
+   "trunk": "F",
+   "sub": "资源抽象",
+   "desc": "etcd/Raft 共识 KV（ZooKeeper/Consul 同类），K8s 控制面底座——万节点单集群的元数据瓶颈与替代路径（注记：k3s 内嵌/分片方案）",
+   "prereqs": [
+    "F1"
+   ],
+   "criteria": "L2：支撑万节点级控制面稳定低时延",
+   "depth": 1,
+   "dependents": 0
+  },
+  {
+   "id": "F31",
+   "name": "密钥与凭据管理",
+   "trunk": "F",
+   "sub": "安全可信",
+   "desc": "KMS/Vault/K8s Secrets 生态（external-secrets/sealed-secrets）、HSM 与国密——MaaS API 凭据、模型权重加密与签名底座",
+   "prereqs": [
+    "F1"
+   ],
+   "criteria": "L2：多租密钥隔离与自动轮转生产化",
+   "depth": 1,
    "dependents": 0
   }
  ],
