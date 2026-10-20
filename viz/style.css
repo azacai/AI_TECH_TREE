@@ -13,7 +13,15 @@ svg#tree.panning{cursor:grabbing;}
 #stats{font-size:12px;color:var(--dim);margin-left:4px;white-space:nowrap;}
 #stats b{color:#7ee787;}
 #stats i{color:#f5c542;font-style:normal;}
-#search{background:#0d1320;border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:5px 8px;font-size:12px;width:150px;}
+#search{background:#0d1320;border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:5px 8px;font-size:12px;width:170px;}
+#searchWrap{position:relative;display:flex;}
+#searchDrop{position:absolute;top:calc(100% + 5px);left:0;z-index:15;min-width:250px;max-width:360px;max-height:320px;overflow-y:auto;
+ display:none;background:rgba(13,19,32,.98);border:1px solid #3a4c75;border-radius:8px;padding:4px;box-shadow:0 8px 28px rgba(0,0,0,.6);}
+.sitem{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:11.5px;}
+.sitem:hover,.sitem.act{background:#1d2942;}
+.sid{background:#2a3653;border-radius:4px;padding:0 5px;font-size:10px;color:#9db4e8;flex-shrink:0;}
+.snm{color:#c6d2e4;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.str{color:#5a6a86;font-size:10px;flex-shrink:0;}
 #legend{position:absolute;bottom:12px;left:12px;z-index:10;background:rgba(17,23,34,.94);border:1px solid var(--line);
  border-radius:10px;padding:8px 12px;font-size:11px;color:var(--dim);display:flex;gap:12px;flex-wrap:wrap;max-width:680px;}
 .lg{display:flex;align-items:center;gap:5px;}
@@ -82,10 +90,11 @@ g.node.lit .ncard .nm{color:#fff;font-weight:700;}
 g.node.lit .ncard .ds{color:#ffffffcc;}
 g.node.lit .st::before{content:"✓ 已点亮";color:#fff;}
 g.node.frontier .ncard{border-style:dashed;}
-g.node.flash .ncard{animation:flash 1.2s;}
+g.node.flash .ncard{animation:flash .9s ease-in-out 3;border-color:#fff;}
 g.node.hlg .ncard{box-shadow:0 0 0 2.5px #fff,0 0 16px #fff4;}
 @keyframes pulse{0%,100%{box-shadow:0 0 5px color-mix(in srgb,var(--tc) 30%,transparent);}50%{box-shadow:0 0 20px color-mix(in srgb,var(--tc) 80%,transparent);}}
-@keyframes flash{0%,60%{box-shadow:0 0 0 3px var(--gold),0 0 22px var(--gold);}100%{box-shadow:none;}}
+@keyframes flash{0%,100%{box-shadow:0 0 0 0 rgba(245,197,66,0);transform:scale(1);}
+ 45%{box-shadow:0 0 0 8px rgba(245,197,66,.95),0 0 60px 22px rgba(245,197,66,.85);transform:scale(1.12);}}
 .badge{position:absolute;top:3px;left:7px;font-size:9px;font-weight:700;display:flex;gap:5px;}
 .badge .fr{color:var(--gold);}
 .badge .dm{color:#ff9ad5;display:none;}
