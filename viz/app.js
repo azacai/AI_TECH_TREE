@@ -145,8 +145,10 @@ function showModal(id){
   "<div class='mmeta'>"+n.trunk+" "+TINFO[n.trunk].name+(n.sub?" · "+n.sub:"")+
   " · 全局深度 "+n.depth+" · 被依赖 "+(KIDS[id]||[]).length+" 个节点</div>"+
   "<div class='mdesc'>"+(n.desc||"")+"</div>"+
+  (n.detail?"<div class='mrow mdet'><b>详述</b><span>"+n.detail+"</span></div>":"")+
   (n.profile?"<div class='mrow mprof'><b>算力画像</b><span>"+n.profile+"</span></div>":"")+
   "<div class='mrow mcrit'><b>点亮判据</b><span>"+n.criteria+"</span></div>"+
+  (n.criteriaDetail?"<div class='mrow mcd'><b>判据解读</b><span>"+n.criteriaDetail+"</span></div>":"")+
   "<div class='mrow mpre'><b>前置依赖</b><span>"+pre+"</span></div>";
  document.getElementById("nodeModal").classList.add("open");
 }

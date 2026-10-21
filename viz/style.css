@@ -138,6 +138,8 @@ path.edge.dashed{stroke-dasharray:5 4;}
 .mrow span{color:#c2cede;flex:1;}
 .mcrit b{color:#8fe3a8;}
 .mcrit span{color:#a9e8bd;}
+.mdet span{color:#dbe4f0;font-size:13px;line-height:1.75;}
+.mcd span{color:#9fd8b4;}
 ::-webkit-scrollbar{width:9px;height:9px;}
 ::-webkit-scrollbar-thumb{background:#26314a;border-radius:5px;}
 ::-webkit-scrollbar-track{background:transparent;}
