@@ -127,7 +127,34 @@ function toggle(id){
  }
  refresh();
 }
-world.addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("g.node");if(g)toggle(g.id.slice(2));});
+let clickT=null;
+world.addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("g.node");if(!g)return;
+ clearTimeout(clickT);clickT=setTimeout(()=>toggle(g.id.slice(2)),240);});
+world.addEventListener("dblclick",e=>{const g=e.target.closest&&e.target.closest("g.node");if(!g)return;
+ clearTimeout(clickT);showModal(g.id.slice(2));});
+
+/* ================= 双击节点详情弹窗 ================= */
+function showModal(id){
+ const n=BY[id];
+ const pre=groupsOf(n).map(gp=>gp.map(p=>p+" "+BY[p].name).join(" / ")).join("；")||"无（根节点）";
+ document.getElementById("mbox").innerHTML=
+  "<div class='mhead'><span class='mid'>"+n.id+"</span><b>"+n.name+"</b>"+
+  (n.frontier?"<span class='mfr'>★ 前沿</span>":"")+
+  ((DOM.domesticNodes||[]).includes(n.id)?"<span class='mdm'>主 国产化必点</span>":"")+
+  "<button id='mclose'>✕ 关闭</button></div>"+
+  "<div class='mmeta'>"+n.trunk+" "+TINFO[n.trunk].name+(n.sub?" · "+n.sub:"")+
+  " · 全局深度 "+n.depth+" · 被依赖 "+(KIDS[id]||[]).length+" 个节点</div>"+
+  "<div class='mdesc'>"+(n.desc||"")+"</div>"+
+  (n.profile?"<div class='mrow mprof'><b>算力画像</b><span>"+n.profile+"</span></div>":"")+
+  "<div class='mrow mcrit'><b>点亮判据</b><span>"+n.criteria+"</span></div>"+
+  "<div class='mrow mpre'><b>前置依赖</b><span>"+pre+"</span></div>";
+ document.getElementById("nodeModal").classList.add("open");
+}
+function closeModal(){document.getElementById("nodeModal").classList.remove("open");}
+document.addEventListener("click",e=>{const m=document.getElementById("nodeModal");
+ if(!m.classList.contains("open"))return;
+ if(e.target===m||e.target.id==="mclose")closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
 
 /* ================= 悬停：高亮祖先链/解锁树 + tooltip ================= */
 const tip=document.getElementById("tooltip");
@@ -239,7 +266,7 @@ function buildSidebar(){
   html+="</div>";
  });
  html+="<div class='foot'>布局：每个主干为一条横向子树带；<b>横轴=全局依赖深度，所有依赖边严格从左到右</b>——依赖外部主干的高阶入口节点（如 H 通智一体、K 部分节点）自动右移。粗彩色边=主干内主路径，细灰边=跨主干/次级依赖（同样是必要前置，悬停可高亮完整祖先链）。<br>"+
-  "点亮规则：前置全部点亮后才可点击；再次点击取消并级联取消下游。虚线边=多选前置（或逻辑）。<br>★前沿=2025H2-2026 研究前沿；「主」=V5 约束模式生效时的国产化必点节点。</div>";
+  "点亮规则：前置全部点亮后才可点击；再次点击取消并级联取消下游。虚线边=多选前置（或逻辑）。<b>双击任意节点弹出技术详情与点亮判据</b>。<br>★前沿=2025H2-2026 研究前沿；「主」=V5 约束模式生效时的国产化必点节点。</div>";
  sb.innerHTML=html;
  document.getElementById("cmsw").parentElement.addEventListener("click",e=>{
   e.preventDefault();constraint=!constraint;

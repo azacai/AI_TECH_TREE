@@ -1,9 +1,9 @@
 {
  "meta": {
-  "version": "0.3.6",
-  "date": "2026-10-20",
-  "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力 + v0.2.7 DeepInfer 与许愿式编程",
-  "nodeCount": 194,
+  "version": "0.3.7",
+  "date": "2026-10-21",
+  "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力 + v0.2.7 DeepInfer 与许愿式编程 + v0.2.8 存储网络与E主干详述",
+  "nodeCount": 195,
   "trunkCount": 11,
   "victoryCount": 5,
   "pathCount": 18
@@ -280,7 +280,7 @@
    ],
    "criteria": "μs 级时延支撑万卡",
    "depth": 1,
-   "dependents": 6
+   "dependents": 7
   },
   {
    "id": "B3",
@@ -1091,7 +1091,7 @@
    "id": "E1",
    "name": "数据并行",
    "trunk": "E",
-   "desc": "DDP",
+   "desc": "数据并行：模型复制多卡、各卡处理不同数据分片、梯度经 AllReduce 同步（PyTorch DDP）",
    "prereqs": [],
    "criteria": "—",
    "depth": 0,
@@ -1101,7 +1101,7 @@
    "id": "E2",
    "name": "显存优化",
    "trunk": "E",
-   "desc": "ZeRO/FSDP",
+   "desc": "显存优化：优化器状态/梯度/参数按三级切分到多卡削平显存墙（DeepSpeed ZeRO、PyTorch FSDP）",
    "prereqs": [
     "E1"
    ],
@@ -1113,7 +1113,7 @@
    "id": "E3",
    "name": "多维并行",
    "trunk": "E",
-   "desc": "3D→五维 Megatron 系",
+   "desc": "多维并行：TP/PP/DP/CP/EP 多维组合切分千亿~万亿模型（Megatron 系五维并行），千卡扩展效率 ≥85%",
    "prereqs": [
     "E2"
    ],
@@ -1125,7 +1125,7 @@
    "id": "E4",
    "name": "FP8 训练工程",
    "trunk": "E",
-   "desc": "V3 278.8 万 GPU 时",
+   "desc": "FP8 训练工程：全 FP8 混合精度的缩放策略与数值稳定工程（DeepSeek-V3 278.8 万 GPU 时首证）",
    "prereqs": [
     "A6",
     "E3"
@@ -1138,7 +1138,7 @@
    "id": "E5",
    "name": "万卡集群工程",
    "trunk": "E",
-   "desc": "MegaScale MFU55.2%/Colossus 十万卡单集群",
+   "desc": "万卡集群工程：万卡级训练的稳定性与效率工程，MFU ≥40% 为门槛、≥55% 为标杆（字节 MegaScale、xAI Colossus 十万卡单集群）",
    "prereqs": [
     "E3",
     "B4"
@@ -1151,7 +1151,7 @@
    "id": "E6",
    "name": "checkpoint 快速存取",
    "trunk": "E",
-   "desc": "K2 5min/Checkmate",
+   "desc": "checkpoint 快速存取：高频异步快照与并行读写，故障后分钟级恢复（Kimi 5min 级、Checkmate）",
    "prereqs": [
     "E5",
     "I5"
@@ -1164,7 +1164,7 @@
    "id": "E7",
    "name": "训练容错自愈",
    "trunk": "E",
-   "desc": "Llama3.1 466 次中断/SDC 检测",
+   "desc": "训练容错自愈：坏卡检测、SDC 硅差错纠与任务自动迁移续训（Llama3.1 54 天 466 次中断自愈；L2 可用率 ≥98%）",
    "prereqs": [
     "E6"
    ],
@@ -1176,7 +1176,7 @@
    "id": "E8",
    "name": "loss spike 治理",
    "trunk": "E",
-   "desc": "检测回滚+Muon",
+   "desc": "loss spike 治理：异常尖峰的检测-回滚-优化器调参闭环，支撑万亿 token 零 spike（Muon 系优化器）",
    "prereqs": [
     "E7"
    ],
@@ -1188,7 +1188,7 @@
    "id": "E9",
    "name": "去中心化/跨集群训练",
    "trunk": "E",
-   "desc": "INTELLECT-2/Di-PS 9 集群",
+   "desc": "去中心化/跨集群训练：跨地域多集群协同训练，容忍异构算力与公网时延（INTELLECT-2、Di-PS 9 集群）",
    "prereqs": [
     "E5"
    ],
@@ -1200,7 +1200,7 @@
    "id": "E10",
    "name": "PB 级数据管线",
    "trunk": "E",
-   "desc": "FineWeb-Edu 15T",
+   "desc": "PB 级数据管线：采集-清洗-去重-配比的工业化数据流水线（FineWeb-Edu 15T token 基准）",
    "prereqs": [
     "I1"
    ],
@@ -1212,7 +1212,7 @@
    "id": "E11",
    "name": "合成数据工厂",
    "trunk": "E",
-   "desc": "Nemotron-CC/Phi-4",
+   "desc": "合成数据工厂：用强模型批量生成训练数据，合成占比 ≥50% 且能力不掉点（Nemotron-CC、Phi-4）",
    "prereqs": [
     "E10"
    ],
@@ -1224,7 +1224,7 @@
    "id": "E12",
    "name": "数据质量评估",
    "trunk": "E",
-   "desc": "DCLM 分级",
+   "desc": "数据质量评估：可计算的数据质量度量与分级筛选，质量分与模型能力强相关（DCLM 分级体系）",
    "prereqs": [
     "E10"
    ],
@@ -1236,7 +1236,7 @@
    "id": "E13",
    "name": "多模态数据联合",
    "trunk": "E",
-   "desc": "K2.5/K3",
+   "desc": "多模态数据联合：图文音视频联合清洗与交错配比，扩模态不引起退化（K2.5/K3 数据管线）",
    "prereqs": [
     "E10"
    ],
@@ -1248,7 +1248,7 @@
    "id": "E14",
    "name": "RL 基础设施",
    "trunk": "E",
-   "desc": "veRL/AReaL+2026 顶会 RL 系统学",
+   "desc": "RL 基础设施：rollout 生成与训练步完全解耦的全异步 RL 训练栈（veRL/AReaL，2026 顶会 RL 系统学）",
    "prereqs": [
     "E3",
     "D12"
@@ -1261,7 +1261,7 @@
    "id": "E15",
    "name": "训推一体 rollout",
    "trunk": "E",
-   "desc": "RL 复用推理引擎",
+   "desc": "训推一体 rollout：RL 采样直接复用推理引擎（vLLM/SGLang），训练采样与在线服务同构提效",
    "prereqs": [
     "E14",
     "D17"
@@ -1274,7 +1274,7 @@
    "id": "E16",
    "name": "数据飞轮",
    "trunk": "E",
-   "desc": "self-improving（MiMo 类）",
+   "desc": "数据飞轮：线上反馈回流构造自我改进闭环（self-improving，MiMo 类实践）",
    "prereqs": [
     "E11",
     "C15"
@@ -1288,7 +1288,7 @@
    "name": "Mid-training 中期训练",
    "trunk": "E",
    "frontier": true,
-   "desc": "ERNIE 首倡/Qwen 管线/轨迹汤",
+   "desc": "Mid-training 中期训练：预训练与后训练之间的能力注入阶段（ERNIE 首倡、Qwen 轨迹汤管线）",
    "prereqs": [
     "E10"
    ],
@@ -1301,7 +1301,7 @@
    "name": "RL 环境工厂",
    "trunk": "E",
    "frontier": true,
-   "desc": "200→2 万并行环境/genrl",
+   "desc": "RL 环境工厂：可验证奖励环境的批量生产与并行供给，从 200 到 2 万并行环境（genrl）",
    "prereqs": [
     "E14"
    ],
@@ -2521,6 +2521,18 @@
    ],
    "criteria": "L1→L2：一句话生成可运行项目成为主流交付形态",
    "depth": 7,
+   "dependents": 0
+  },
+  {
+   "id": "I12",
+   "name": "存储协议互通与路径导航",
+   "trunk": "I",
+   "desc": "FC/iSCSI/NVMe-oF/S3 等块-文件-对象协议的网关转换与互通，存储网络多路径选择、负载均衡与故障切换（MPIO/DM-multipath/NVMe multipath）——存算分离与跨域数据流动的接入层",
+   "prereqs": [
+    "B2"
+   ],
+   "criteria": "L2：多协议互通与多路径故障切换生产化（切换无感知）",
+   "depth": 2,
    "dependents": 0
   }
  ],
