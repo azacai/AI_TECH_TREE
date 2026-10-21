@@ -1,9 +1,9 @@
 {
  "meta": {
-  "version": "0.3.7",
+  "version": "0.3.8",
   "date": "2026-10-21",
   "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力 + v0.2.7 DeepInfer 与许愿式编程 + v0.2.8 存储网络与E主干详述",
-  "nodeCount": 195,
+  "nodeCount": 196,
   "trunkCount": 11,
   "victoryCount": 5,
   "pathCount": 18
@@ -292,7 +292,7 @@
    ],
    "criteria": "AllReduce 满足万卡效率",
    "depth": 2,
-   "dependents": 1
+   "dependents": 2
   },
   {
    "id": "B4",
@@ -304,7 +304,7 @@
    ],
    "criteria": "L2：万卡作业月级稳定",
    "depth": 2,
-   "dependents": 6
+   "dependents": 7
   },
   {
    "id": "B5",
@@ -440,6 +440,19 @@
    ],
    "criteria": "L2：跨域 P99.9 时延抖动上界可承诺",
    "depth": 2,
+   "dependents": 0
+  },
+  {
+   "id": "B16",
+   "name": "算网协同路径导航",
+   "trunk": "B",
+   "desc": "集合通信库自动构建节点间 CPU/网卡/GPU 物理连接拓扑，结合云算网协同实现流量最优路径；集合通信库与网络控制器交互拓扑信息，实现通信流量全局负载分担",
+   "prereqs": [
+    "B3",
+    "B4"
+   ],
+   "criteria": "L2：拓扑感知全局负载分担万卡级生产化（链路利用率均衡可量化）",
+   "depth": 3,
    "dependents": 0
   },
   {
@@ -2525,13 +2538,13 @@
   },
   {
    "id": "I12",
-   "name": "存储协议互通与路径导航",
+   "name": "存储协议互通",
    "trunk": "I",
-   "desc": "FC/iSCSI/NVMe-oF/S3 等块-文件-对象协议的网关转换与互通，存储网络多路径选择、负载均衡与故障切换（MPIO/DM-multipath/NVMe multipath）——存算分离与跨域数据流动的接入层",
+   "desc": "FC/iSCSI/NVMe-oF/S3 等块-文件-对象协议的网关转换与互通——存算分离与跨域数据流动的存储侧接入层",
    "prereqs": [
     "B2"
    ],
-   "criteria": "L2：多协议互通与多路径故障切换生产化（切换无感知）",
+   "criteria": "L2：多协议互通生产化（块/文件/对象统一访问）",
    "depth": 2,
    "dependents": 0
   }

@@ -1,5 +1,5 @@
 {
- "meta": {"version": "0.3.7", "date": "2026-10-21", "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力 + v0.2.7 DeepInfer 与许愿式编程 + v0.2.8 存储网络与E主干详述", "nodeCount": 195, "trunkCount": 11, "victoryCount": 5, "pathCount": 18},
+ "meta": {"version": "0.3.8", "date": "2026-10-21", "source": "智算科技树-v0.2.2.md + AI4S范式层重构 + 知识图谱 + 曙光锚点 + v0.2.5 工程与前沿缺口 + v0.2.6 平台基础能力 + v0.2.7 DeepInfer 与许愿式编程 + v0.2.8 存储网络与E主干详述", "nodeCount": 196, "trunkCount": 11, "victoryCount": 5, "pathCount": 18},
  "trunks": [
   {"id": "A", "name": "芯片与算力硬件", "type": "常规", "question": "单点每秒每瓦能算多少"},
   {"id": "B", "name": "互连与网络", "type": "常规", "question": "多机能不能当单机用"},
@@ -44,6 +44,7 @@
   {"id": "B13", "name": "LPO/NPO 线性直驱光", "trunk": "B", "frontier": true, "desc": "800G LPO 商用/6.4T NPO 首发", "prereqs": ["B9"], "criteria": "L2：互连功耗降 ≥50%"},
   {"id": "B14", "name": "CXL 内存解耦（scale-out 侧）", "trunk": "B", "frontier": true, "desc": "Astera Leo 2/LeoX fabric-attached memory", "prereqs": ["B1"], "criteria": "L2：跨机内存池商用"},
   {"id": "B15", "name": "确定性网络", "trunk": "B", "desc": "DetNet/TSN/确定性时延与抖动上界，无损网络的跨域延伸——算力并网（H4/H5）与跨集群训推（E9）的跨域 SLA 底座", "prereqs": ["B2"], "criteria": "L2：跨域 P99.9 时延抖动上界可承诺"},
+  {"id": "B16", "name": "算网协同路径导航", "trunk": "B", "desc": "集合通信库自动构建节点间 CPU/网卡/GPU 物理连接拓扑，结合云算网协同实现流量最优路径；集合通信库与网络控制器交互拓扑信息，实现通信流量全局负载分担", "prereqs": ["B3", "B4"], "criteria": "L2：拓扑感知全局负载分担万卡级生产化（链路利用率均衡可量化）"},
   {"id": "C1", "name": "Transformer 基石", "trunk": "C", "desc": "自注意力", "prereqs": [], "criteria": "—"},
   {"id": "C2", "name": "预训练 + Scaling Laws", "trunk": "C", "desc": "GPT 范式", "prereqs": ["C1"], "criteria": "规模外推误差 <5%"},
   {"id": "C3", "name": "注意力高效化", "trunk": "C", "desc": "GQA→MLA（KV 压缩 93%）", "prereqs": ["C1"], "criteria": "KV 降幅 ≥8× 近无损"},
@@ -208,7 +209,7 @@
   {"id": "F30", "name": "分布式协调与状态存储", "trunk": "F", "sub": "资源抽象", "desc": "etcd/Raft 共识 KV（ZooKeeper/Consul 同类），K8s 控制面底座——万节点单集群的元数据瓶颈与替代路径（注记：k3s 内嵌/分片方案）", "prereqs": ["F1"], "criteria": "L2：支撑万节点级控制面稳定低时延"},
   {"id": "F31", "name": "密钥与凭据管理", "trunk": "F", "sub": "安全可信", "desc": "KMS/Vault/K8s Secrets 生态（external-secrets/sealed-secrets）、HSM 与国密——MaaS API 凭据、模型权重加密与签名底座", "prereqs": ["F1"], "criteria": "L2：多租密钥隔离与自动轮转生产化"},
   {"id": "J17", "name": "许愿式编程（意图驱动开发）", "trunk": "J", "frontier": true, "desc": "从表达代码到表达意图：一句话需求→规格→计划→编码→运行→交付的端到端自治（vibe coding 之后的范式跃迁；2026.10 DeepSeek V4.1-Flash 与 GPT-6 Astra 产品化引爆·术语为社区话语无单一出处）", "prereqs": ["J10", "J9"], "criteria": "L1→L2：一句话生成可运行项目成为主流交付形态"},
-  {"id": "I12", "name": "存储协议互通与路径导航", "trunk": "I", "desc": "FC/iSCSI/NVMe-oF/S3 等块-文件-对象协议的网关转换与互通，存储网络多路径选择、负载均衡与故障切换（MPIO/DM-multipath/NVMe multipath）——存算分离与跨域数据流动的接入层", "prereqs": ["B2"], "criteria": "L2：多协议互通与多路径故障切换生产化（切换无感知）"}
+  {"id": "I12", "name": "存储协议互通", "trunk": "I", "desc": "FC/iSCSI/NVMe-oF/S3 等块-文件-对象协议的网关转换与互通——存算分离与跨域数据流动的存储侧接入层", "prereqs": ["B2"], "criteria": "L2：多协议互通生产化（块/文件/对象统一访问）"}
  ],
  "victories": [
   {"id": "V1", "name": "经济性", "definition": "每 token 成本与能耗（$/Mtoken 与 J/token）",
